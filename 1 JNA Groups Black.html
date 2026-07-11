@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>JNA Groups — Premium Peeled Garlic Ecosystem</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,500;9..144,600;9..144,700&family=Work+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@500;600&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   JNA GROUPS — Design System
+   Palette: Onyx / Sage / Champagne Gold / Cream
+   ============================================================ */
+:root{
+  --onyx:#12160f;
+  --onyx-soft:#1b2117;
+  --onyx-card: rgba(246,241,228,0.03);
+  --sage:#8ba888;
+  --sage-deep:#4d6b4a;
+  --gold:#c9a668;
+  --gold-soft:#e6d3a3;
+  --cream:#f6f1e4;
+  --line: rgba(246,241,228,0.14);
+  --danger:#c97c68;
+  --radius:14px;
+  --maxw:1180px;
+}
+*{box-sizing:border-box; margin:0; padding:0;}
+html{scroll-behavior:smooth;}
+body{background:var(--onyx); color:var(--cream); font-family:'Work Sans', sans-serif; font-size:15px; line-height:1.6;}
+.display{font-family:'Fraunces', serif;}
+.mono{font-family:'JetBrains Mono', monospace;}
+a{color:inherit; text-decoration:none;}
+button{font-family:inherit; cursor:pointer;}
+.wrap{max-width:var(--maxw); margin:0 auto; padding:0 32px;}
+@media (max-width:640px){ .wrap{ padding:0 20px; } }
+
+.bg-glow{
+  background:
+    radial-gradient(ellipse 900px 500px at 10% -10%, rgba(139,168,136,0.14), transparent 60%),
+    radial-gradient(ellipse 700px 500px at 100% 0%, rgba(201,166,104,0.10), transparent 55%),
+    var(--onyx);
+}
+
+/* ---------- NAV ---------- */
+.nav{position:sticky; top:0; z-index:50; background:rgba(18,22,15,0.86); backdrop-filter:blur(10px); border-bottom:1px solid var(--line);}
+.nav-inner{max-width:var(--maxw); margin:0 auto; padding:16px 32px; display:flex; align-items:center; justify-content:space-between; gap:20px;}
+.nav-brand{display:flex; align-items:center; gap:12px;}
+.nav-brand .name{font-family:'Fraunces',serif; font-weight:600; font-size:19px; letter-spacing:0.5px;}
+.nav-brand .name span{color:var(--gold-soft); font-size:9px; letter-spacing:2.5px; display:block; font-family:'Work Sans',sans-serif; text-transform:uppercase; margin-top:2px;}
+.nav-links{display:flex; align-items:center; gap:28px;}
+.nav-links button{background:none; border:none; font-size:13px; letter-spacing:0.3px; color:rgba(246,241,228,0.75); padding:4px 0; font-weight:500;}
+.nav-links button:hover, .nav-links button.active{color:var(--cream); border-bottom:1px solid var(--gold);}
+.nav-cart{display:flex; align-items:center; gap:18px;}
+.cart-btn{display:flex; align-items:center; gap:7px; border:1px solid var(--line); border-radius:999px; padding:8px 14px; font-size:12.5px; color:var(--cream); background:transparent;}
+.cart-btn:hover{border-color:var(--gold);}
+.cart-count{background:var(--gold); color:var(--onyx); border-radius:999px; font-size:10.5px; font-weight:700; width:18px; height:18px; display:flex; align-items:center; justify-content:center;}
+
+/* ---------- MAIN LAYOUT SCHEME ---------- */
+.view-panel{display:none;}
+.view-panel.active-panel{display:block;}
+section{padding:70px 0;}
+.divider{border-top:1px solid var(--line);}
+.card{background:var(--onyx-card); border:1px solid var(--line); border-radius:var(--radius); padding:24px;}
+.btn{display:inline-flex; align-items:center; justify-content:center; gap:8px; padding:13px 26px; border-radius:999px; font-size:13.5px; font-weight:600; letter-spacing:0.3px; border:1px solid transparent; transition:all .18s ease;}
+.btn-gold{background:var(--gold); color:var(--onyx); border:none;}
+.btn-gold:hover{background:var(--gold-soft);}
+.btn-outline{border-color:var(--sage); color:var(--cream); background:transparent;}
+.btn-outline:hover{border-color:var(--gold); color:var(--gold-soft);}
+.btn-block{width:100%;}
+.btn-sm{padding:9px 18px; font-size:12px;}
+.eyebrow{font-size:11px; letter-spacing:4px; color:var(--sage); text-transform:uppercase; margin-bottom:14px;}
+.section-head{text-align:center; max-width:640px; margin:0 auto 44px;}
+.section-head h2{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(26px,4vw,38px); line-height:1.15;}
+.section-head h2 em{font-style:italic; color:var(--gold);}
+.section-head p{margin-top:14px; font-size:14.5px; color:rgba(246,241,228,0.7);}
+
+/* ---------- PAGE SPECIFIC COMPONENT STYLES ---------- */
+.hero{padding:90px 0 70px; text-align:center;}
+.hero h1{font-family:'Fraunces',serif; font-weight:600; font-size:clamp(34px,6vw,58px); line-height:1.06;}
+.hero h1 em{font-style:italic; color:var(--gold);}
+.hero p{max-width:540px; margin:20px auto 32px; font-size:15.5px; color:rgba(246,241,228,0.72);}
+.hero-actions{display:flex; gap:14px; justify-content:center; flex-wrap:wrap;}
+.hero-stats{display:flex; justify-content:center; gap:60px; margin-top:64px; flex-wrap:wrap;}
+.stat .num{font-family:'Fraunces',serif; font-weight:600; font-size:32px; color:var(--gold-soft);}
+.stat .lbl{font-size:11px; letter-spacing:1px; color:rgba(246,241,228,0.55); margin-top:4px; text-transform:uppercase;}
+.split-cta{display:grid; grid-template-columns:1fr 1fr; gap:20px;}
+.split-card{border:1px solid var(--line); border-radius:var(--radius); padding:34px 28px; position:relative; overflow:hidden;}
+.split-card.retail{background:linear-gradient(160deg, rgba(139,168,136,0.10), transparent 60%);}
+.split-card.biz{background:linear-gradient(160deg, rgba(201,166,104,0.10), transparent 60%);}
+.split-card h3{font-family:'Fraunces',serif; font-weight:600; font-size:24px; margin:10px 0 12px;}
+.split-card p{font-size:13.5px; color:rgba(246,241,228,0.7); margin-bottom:22px; line-height:1.6;}
+@media (max-width:760px){ .split-cta{ grid-template-columns:1fr; } }
+
+.why{display:grid; grid-template-columns:repeat(5,1fr); border-top:1px solid var(--line); border-bottom:1px solid var(--line);}
+.why-item{padding:26px 12px; text-align:center; border-right:1px solid var(--line);}
+.why-item:last-child{border-right:none;}
+.why-item .t{font-size:11.5px; font-weight:600;}
+.why-item .d{font-size:9.5px; color:rgba(246,241,228,0.55); margin-top:3px; line-height:1.4;}
+@media (max-width:700px){ .why{ grid-template-columns:repeat(2,1fr); } .why-item{ border-right:none; border-bottom:1px solid var(--line); } }
+
+.process{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
+.process-item{text-align:center;}
+.process-item .num{font-family:'Fraunces',serif; font-size:13px; color:var(--gold); border:1px solid var(--gold); width:32px; height:32px; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 14px;}
+.process-item h4{font-size:13.5px; font-weight:600; margin-bottom:6px;}
+.process-item p{font-size:11.8px; color:rgba(246,241,228,0.6); line-height:1.5;}
+@media (max-width:760px){ .process{ grid-template-columns:1fr 1fr; } }
+
+.product-grid{display:grid; grid-template-columns:repeat(3,1fr); gap:20px;}
+.product-card{background:var(--onyx-card); border:1px solid var(--line); border-radius:var(--radius); padding:22px; text-align:center; transition:all .18s;}
+.product-card:hover{border-color:var(--gold); transform:translateY(-3px);}
+.product-card .pname{font-family:'Fraunces',serif; font-weight:600; font-size:17px; margin-top:14px;}
+.product-card .pdesc{font-size:12px; color:rgba(246,241,228,0.6); margin-top:4px; min-height:32px;}
+.product-card .prow{display:flex; align-items:center; justify-content:space-between; margin-top:16px;}
+.qty-stepper{display:flex; align-items:center; border:1px solid var(--line); border-radius:999px; overflow:hidden;}
+.qty-stepper button{background:none; border:none; color:var(--cream); width:28px; height:28px; font-size:15px;}
+.qty-stepper span{width:24px; text-align:center; font-family:'JetBrains Mono',monospace; font-size:12.5px;}
+.add-cart-btn{margin-top:14px; width:100%; background:var(--gold); color:var(--onyx); border:none; border-radius:999px; padding:10px; font-size:12.5px; font-weight:700; letter-spacing:0.4px;}
+.add-cart-btn.added{background:var(--sage);}
+@media (max-width:860px){ .product-grid{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:520px){ .product-grid{ grid-template-columns:1fr; } }
+
+.segments{display:grid; grid-template-columns:repeat(4,1fr); gap:14px;}
+.seg{background:var(--onyx-card); border:1px solid var(--line); border-radius:var(--radius); padding:24px 16px 20px; text-align:center; position:relative;}
+.seg .scale-tag{position:absolute; top:-10px; left:50%; transform:translateX(-50%); background:var(--onyx); border:1px solid var(--gold); color:var(--gold); font-size:8.5px; letter-spacing:1.5px; padding:3px 9px; border-radius:999px; white-space:nowrap;}
+.seg h3{font-family:'Fraunces',serif; font-weight:600; font-size:15px; margin-top:12px;}
+.seg .hn{font-size:11px; color:var(--gold-soft); margin:2px 0 10px; font-style:italic;}
+.seg p{font-size:11.8px; color:rgba(246,241,228,0.68);}
+.seg .pack{margin-top:12px; font-size:10px; color:var(--sage); border-top:1px dashed var(--line); padding-top:10px;}
+@media (max-width:860px){ .segments{ grid-template-columns:repeat(2,1fr); } }
+@media (max-width:520px){ .segments{ grid-template-columns:1fr; } }
+
+.field{margin-bottom:16px;}
+.field label{display:block; font-size:11.5px; letter-spacing:0.5px; color:var(--sage); margin-bottom:6px; text-transform:uppercase;}
+.field input, .field select, .field textarea{width:100%; background:rgba(246,241,228,0.04); border:1px solid var(--line); border-radius:8px; padding:12px 14px; color:var(--cream); font-family:inherit; font-size:13.5px;}
+.field input:focus, .field select:focus, .field textarea:focus{outline:none; border-color:var(--gold);}
+.field-row{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+@media (max-width:560px){ .field-row{ grid-template-columns:1fr; } }
+.radio-group{display:flex; gap:10px; flex-wrap:wrap;}
+.radio-pill{border:1px solid var(--line); border-radius:999px; padding:9px 16px; font-size:12.5px; cursor:pointer;}
+.radio-pill.active{border-color:var(--gold); background:rgba(201,166,104,0.1); color:var(--gold-soft); }
+
+.cart-layout, .checkout-layout{display:grid; grid-template-columns:1.6fr 1fr; gap:28px;}
+@media (max-width:820px){ .cart-layout, .checkout-layout{ grid-template-columns:1fr; } }
+.cart-line, .mini-line{display:flex; align-items:center; justify-content:between; gap:16px; padding:16px 0; border-bottom:1px solid var(--line);}
+.cart-line .info, .mini-line{flex:1;}
+.summary-row{display:flex; justify-content:space-between; font-size:13px; padding:8px 0; color:rgba(246,241,228,0.75);}
+.summary-row.total{border-top:1px solid var(--line); margin-top:8px; padding-top:16px; font-size:16px; font-weight:600;}
+
+.toast{position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px); background:var(--sage-deep); color:var(--cream); padding:12px 22px; border-radius:999px; font-size:13px; opacity:0; pointer-events:none; transition:all .25s ease; z-index:200;}
+.toast.show{opacity:1; transform:translateX(-50%) translateY(0);}
+.form-success{display:none; text-align:center; padding:40px 20px;}
+.form-success.show{display:block;}
+
+.two-col{display:grid; grid-template-columns:1fr 1fr; gap:48px; align-items:center;}
+@media (max-width:860px){ .two-col{ grid-template-columns:1fr; } }
+.source-map{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+.source-card{border:1px solid var(--line); border-radius:var(--radius); padding:24px;}
+.contact-grid{display:grid; grid-template-columns:1fr 1.2fr; gap:32px;}
+@media (max-width:820px){ .contact-grid{ grid-template-columns:1fr; } }
+
+footer{border-top:1px solid var(--line); padding:56px 0 24px; margin-top:40px;}
+.foot-grid{display:grid; grid-template-columns:1.4fr 1fr 1fr 1fr; gap:32px; margin-bottom:40px;}
+.foot-col h4{font-size:11px; letter-spacing:2px; text-transform:uppercase; color:var(--gold-soft); margin-bottom:14px;}
+.foot-col p, .foot-col a{display:block; font-size:12.5px; color:rgba(246,241,228,0.65); margin-bottom:9px;}
+.foot-bottom{display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; padding-top:20px; border-top:1px solid var(--line); font-size:10.5px; color:rgba(246,241,228,0.4);}
+</style>
+</head>
+<body class="bg-glow">
+
+<!-- SHARED NAVBAR -->
+<nav class="nav">
+  <div class="nav-inner">
+    <button onclick="switchView('home')" class="nav-brand" style="background:none; border:none; text-align:left;">
+      <div class="name" style="color:var(--cream);">JNA GROUPS<span style="color:var(--gold-soft);">Peeled Garlic</span></div>
+    </button>
+    <div class="nav-links">
+      <button id="nav-home" onclick="switchView('home')" class="active">Home</button>
+      <button id="nav-products" onclick="switchView('products')">Products</button>
+      <button id="nav-business" onclick="switchView('business')">Business</button>
+      <button id="nav-about" onclick="switchView('about')">About</button>
+      <button id="nav-contact" onclick="switchView('contact')">Contact</button>
+    </div>
+    <div class="nav-cart">
+      <button onclick="switchView('cart')" class="cart-btn">
+        Cart <span class="cart-count" data-cart-count>0</span>
+      </button>
+    </div>
+  </div>
+</nav>
+
+<!-- 1. HOME VIEW -->
+<div id="view-home" class="view-panel active-panel">
+  <section class="hero">
+    <div class="wrap">
+      <div class="eyebrow">From Earth to Excellence</div>
+      <h1>Premium Peeled Garlic,<br><em>Table-Ready</em> for Every Kitchen</h1>
+      <p>Shuddh Lehsun, Swad aur Sehat ka Vishwas. Sourced from Varanasi &amp; MP's finest fields — 100% pure, hygienically peeled, ready to cook.</p>
+      <div class="hero-actions">
+        <button onclick="switchView('products')" class="btn btn-gold">Shop Retail Packs</button>
+        <button onclick="switchView('business')" class="btn btn-outline">Bulk / Business Supply</button>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="num">100%</div><div class="lbl">Pure &amp; Natural</div></div>
+        <div class="stat"><div class="num">4</div><div class="lbl">Pack Sizes</div></div>
+        <div class="stat"><div class="num">1000+</div><div class="lbl">Happy Customers</div></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="divider">
+    <div class="wrap">
+      <div class="split-cta">
+        <div class="split-card retail">
+          <div class="tag" style="font-size:11px; color:var(--sage);">For Homes</div>
+          <h3>Retail Packs</h3>
+          <p>250gm, 500gm &amp; 1kg packs — perfect for daily cooking. No peeling, no wastage.</p>
+          <button onclick="switchView('products')" class="btn btn-outline btn-sm">Browse Products →</button>
+        </div>
+        <div class="split-card biz">
+          <div class="tag" style="font-size:11px; color:var(--gold);">For Business</div>
+          <h3>Bulk Supply</h3>
+          <p>Street carts to 5-star hotels — reliable bulk packs (5kg–25kg) with scheduled delivery.</p>
+          <button onclick="switchView('business')" class="btn btn-outline btn-sm">Explore Business Supply →</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 2. PRODUCTS VIEW -->
+<div id="view-products" class="view-panel">
+  <section class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Retail Packs</div>
+      <h2>Fresh Peeled Garlic, <em>Ready to Cook</em></h2>
+    </div>
+    <div class="product-grid">
+      <!-- 250g -->
+      <div class="product-card" data-id="p250" data-price="50">
+        <div class="pname">250 gm Pack</div>
+        <div class="pdesc">Perfect for trial &amp; small households</div>
+        <div class="prow">
+          <div class="price" style="color:var(--gold-soft); font-weight:600;">₹50/-</div>
+          <div class="qty-stepper" data-qty="1">
+            <button class="qty-minus" onclick="adjustStepper(this, -1)">−</button><span>1</span><button class="qty-plus" onclick="adjustStepper(this, 1)">+</button>
+          </div>
+        </div>
+        <button class="add-cart-btn btn btn-gold" onclick="handleAddToCart(this)">Add to Cart</button>
+      </div>
+      <!-- 500g -->
+      <div class="product-card" data-id="p500" data-price="90">
+        <div class="pname">500 gm Pack</div>
+        <div class="pdesc">Our most popular everyday size</div>
+        <div class="prow">
+          <div class="price" style="color:var(--gold-soft); font-weight:600;">₹90/-</div>
+          <div class="qty-stepper" data-qty="1">
+            <button class="qty-minus" onclick="adjustStepper(this, -1)">−</button><span>1</span><button class="qty-plus" onclick="adjustStepper(this, 1)">+</button>
+          </div>
+        </div>
+        <button class="add-cart-btn btn btn-gold" onclick="handleAddToCart(this)">Add to Cart</button>
+      </div>
+      <!-- 1kg -->
+      <div class="product-card" data-id="p1kg" data-price="170">
+        <div class="pname">1 kg Pack</div>
+        <div class="pdesc">Best value for regular cooking</div>
+        <div class="prow">
+          <div class="price" style="color:var(--gold-soft); font-weight:600;">₹170/-</div>
+          <div class="qty-stepper" data-qty="1">
+            <button class="qty-minus" onclick="adjustStepper(this, -1)">−</button><span>1</span><button class="qty-plus" onclick="adjustStepper(this, 1)">+</button>
+          </div>
+        </div>
+        <button class="add-cart-btn btn btn-gold" onclick="handleAddToCart(this)">Add to Cart</button>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 3. BUSINESS VIEW -->
+<div id="view-business" class="view-panel">
+  <section class="wrap">
+    <div class="section-head">
+      <div class="eyebrow">Business Supply Division</div>
+      <h2>Bulk Peeled Garlic for <em>Every Kitchen</em></h2>
+    </div>
+    <div class="segments" style="margin-bottom:40px;">
+      <div class="seg"><h3>Street Vendors</h3><p>Consistent pre-peeled garlic for fast rush-hour service.</p></div>
+      <div class="seg"><h3>Chinese Outlets</h3><p>Sorted cloves, no husk residue, wok-ready straight away.</p></div>
+      <div class="seg"><h3>Restaurants</h3><p>Everyday tadka, bulk volumes week-over-week supply.</p></div>
+      <div class="seg"><h3>Premium Hotels</h3><p>Chef-grade consistency with complete quality tracking documentation.</p></div>
+    </div>
+    <div class="card" style="max-width:600px; margin:0 auto;">
+      <form onsubmit="handleFormSubmit(event, 'biz-success')">
+        <div class="field-row">
+          <div class="field"><label>Business Name</label><input type="text" required></div>
+          <div class="field"><label>Contact Number</label><input type="tel" required></div>
+        </div>
+        <div class="field">
+          <label>Requirement Scale</label>
+          <select required><option>Under 25kg/month</option><option>25kg - 100kg/month</option><option>100kg+</option></select>
+        </div>
+        <button type="submit" class="btn btn-gold btn-block">Request Bulk Pricing</button>
+      </form>
+      <div id="biz-success" class="form-success">
+        <h3>Enquiry Received!</h3>
+        <p>Our wholesale management specialist will call you back within 24 business hours.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 4. ABOUT VIEW -->
+<div id="view-about" class="view-panel">
+  <section class="wrap">
+    <div class="two-col">
+      <div>
+        <div class="eyebrow">Our Story</div>
+        <h2>Har Rasoi ki <em>Pehli Pasand</em></h2>
+        <p style="margin-top:14px; color:rgba(246,241,228,0.7);">JNA Groups stands on core principles of absolute purity and cleanliness. Sourcing straight from the local roots of Varanasi processing fields and the premium agricultural pipeline of Madhya Pradesh, we clear away time-consuming operations so you cook without restrictions.</p>
+      </div>
+      <div class="card">
+        <div class="source-map">
+          <div class="source-card"><h4>Varanasi, UP</h4><p>Primary sorting and hygienic packaging hub.</p></div>
+          <div class="source-card"><h4>Mandsaur, MP</h4><p>Premium crop fields ensuring bulk chain stability.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 5. CONTACT VIEW -->
+<div id="view-contact" class="view-panel">
+  <section class="wrap contact-grid">
+    <div>
+      <div class="card" style="margin-bottom:16px;">
+        <h3 style="color:var(--gold-soft); margin-bottom:8px;">Headquarters Address</h3>
+        <p>E-428, New Ashok Nagar, New Delhi, India</p>
+      </div>
+      <div class="card">
+        <h3 style="color:var(--gold-soft); margin-bottom:8px;">Direct Helplines</h3>
+        <p>Phone/WhatsApp: +91 7348491182</p>
+        <p>Support Hours: Mon-Sat, 9:00 AM - 8:00 PM</p>
+      </div>
+    </div>
+    <div class="card">
+      <form onsubmit="handleFormSubmit(event, 'contact-success')">
+        <div class="field"><label>Your Name</label><input type="text" required></div>
+        <div class="field"><label>Message</label><textarea rows="4" required></textarea></div>
+        <button type="submit" class="btn btn-gold btn-block">Send Message</button>
+      </form>
+      <div id="contact-success" class="form-success">
+        <h3>Message Dispatched!</h3>
+        <p>Thank you for reaching out. We will connect back with you shortly.</p>
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- 6. CART VIEW -->
+<div id="view-cart" class="view-panel">
+  <section class="wrap">
+    <div id="cart-filled" class="cart-layout">
+      <div class="card" id="cart-lines-target"></div>
+      <div class="card">
+        <div class="eyebrow">Checkout Breakup</div>
+        <div class="summary-row"><span>Total Payable Subtotal</span><span id="cart-total-val" class="mono">₹0/-</span></div>
+        <button onclick="switchView('checkout')" class="btn btn-gold btn-block" style="margin-top:16px;">Proceed to Checkout</button>
+      </div>
+    </div>
+    <div id="cart-empty" style="text-align:center; padding:40px 0;">
+      <p>Your shopping cart is currently empty.</p>
+      <button onclick="switchView('products')" class="btn btn-outline btn-sm" style="margin-top:12px;">Browse Products</button>
+    </div>
+  </section>
+</div>
+
+<!-- 7. CHECKOUT VIEW -->
+<div id="view-checkout" class="view-panel">
+  <section class="wrap checkout-layout">
+    <div class="card">
+      <form onsubmit="handleOrderSubmission(event)">
+        <div class="eyebrow">Shipping Logistics</div>
+        <div class="field-row">
+          <div class="field"><label>Full Name</label><input type="text" required></div>
+          <div class="field"><label>Mobile Link</label><input type="tel" required></div>
+        </div>
+        <div class="field"><label>Full Target Address</label><textarea rows="2" required></textarea></div>
+        <div class="field"><label>Payment Mode</label><select><option>Cash on Delivery (COD)</option></select></div>
+        <button type="submit" class="btn btn-gold btn-block">Confirm &amp; Place Order</button>
+      </form>
+    </div>
+    <div class="card">
+      <div class="eyebrow">Final Verification</div>
+      <div id="checkout-summary-target"></div>
+      <div class="summary-row total"><span>Total Cost Due</span><span id="checkout-total-val" class="mono">₹0/-</span></div>
+    </div>
+  </section>
+</div>
+
+<div id="order-success-screen" class="view-panel" style="text-align:center; padding:80px 20px;">
+  <div class="card" style="max-width:500px; margin:0 auto;">
+    <h2 style="color:var(--sage); margin-bottom:12px;">Order Successfully Logged!</h2>
+    <p>Thank you for purchasing with JNA Groups. Our distribution team will update your tracking reference over delivery shortly.</p>
+    <button onclick="switchView('home')" class="btn btn-gold btn-sm" style="margin-top:20px;">Return to Main Desk</button>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-col"><h4>JNA Groups</h4><p>Premium peeled garlic solutions across Indian households and commercial sectors.</p></div>
+      <div class="foot-col"><h4>Explore</h4><p><a href="#" onclick="switchView('products')">Retail Division</a></p><p><a href="#" onclick="switchView('business')">Wholesale Logistics</a></p></div>
+      <div class="foot-col"><h4>Contact</h4><p>Delhi Processing Hubs</p><p>Tel: 7348491182</p></div>
+    </div>
+    <div class="foot-bottom"><div>&copy; 2026 JNA Groups. All rights reserved.</div><div>Har Rasoi ki Pehli Pasand.</div></div>
+  </div>
+</footer>
+
+<div class="toast" id="global-toast">Item synchronized successfully</div>
+
+<!-- OPERATIONAL CORE JAVASCRIPT ENGINE -->
+<script>
+const CART_KEY = 'jna_cart_v1';
+
+function getCartStore(){
+  try { return JSON.parse(localStorage.getItem(CART_KEY)) || []; } catch(e) { return []; }
+}
+function saveCartStore(data){
+  localStorage.setItem(CART_KEY, JSON.stringify(data));
+  updateBadges();
+}
+
+function updateBadges(){
+  const cart = getCartStore();
+  const count = cart.reduce((total, row) => total + row.qty, 0);
+  document.querySelectorAll('[data-cart-count]').forEach(badge => badge.textContent = count);
+}
+
+function triggerToast(text){
+  const toast = document.getElementById('global-toast');
+  toast.textContent = text;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2000);
+}
+
+function switchView(targetPanel){
+  document.querySelectorAll('.view-panel').forEach(view => view.classList.remove('active-panel'));
+  document.querySelectorAll('.nav-links button').forEach(lnk => lnk.classList.remove('active'));
+  
+  const selectedView = document.getElementById(`view-${targetPanel}`) || document.getElementById(targetPanel);
+  if(selectedView) selectedView.classList.add('active-panel');
+  
+  const activeNav = document.getElementById(`nav-${targetPanel}`);
+  if(activeNav) activeNav.classList.add('active');
+  
+  window.scrollTo({top: 0, behavior: 'smooth'});
+  if(targetPanel === 'cart') renderCartView();
+  if(targetPanel === 'checkout') renderCheckoutSummary();
+}
+
+function adjustStepper(btn, factor){
+  const stepper = btn.closest('.qty-stepper');
+  let val = parseInt(stepper.getAttribute('data-qty')) || 1;
+  val = Math.max(1, val + factor);
+  stepper.setAttribute('data-qty', val);
+  stepper.querySelector('span').textContent = val;
+}
+
+function handleAddToCart(btn){
+  const card = btn.closest('.product-card');
+  const id = card.getAttribute('data-id');
+  const price = parseFloat(card.getAttribute('data-price'));
+  const name = card.querySelector('.pname').textContent;
+  const qty = parseInt(card.querySelector('.qty-stepper').getAttribute('data-qty')) || 1;
+  
+  let cart = getCartStore();
+  let existing = cart.find(i => i.id === id);
+  if(existing) {
+    existing.qty += qty;
+  } else {
+    cart.push({ id, name, price, qty });
+  }
+  saveCartStore(cart);
+  triggerToast(`${name} linked to your cart session.`);
+}
+
+function modifyCartLineQty(id, targetVal){
+  let cart = getCartStore();
+  let line = cart.find(i => i.id === id);
+  if(line){
+    line.qty = Math.max(1, targetVal);
+    saveCartStore(cart);
+    renderCartView();
+  }
+}
+
+function purgeCartLine(id){
+  let cart = getCartStore().filter(i => i.id !== id);
+  saveCartStore(cart);
+  renderCartView();
+}
+
+function renderCartView(){
+  const cart = getCartStore();
+  const linesTarget = document.getElementById('cart-lines-target');
+  if(cart.length === 0){
+    document.getElementById('cart-filled').style.display = 'none';
+    document.getElementById('cart-empty').style.display = 'block';
+    return;
+  }
+  document.getElementById('cart-filled').style.display = 'grid';
+  document.getElementById('cart-empty').style.display = 'none';
+  
+  linesTarget.innerHTML = '';
+  let subtotal = 0;
+  cart.forEach(item => {
+    subtotal += (item.price * item.qty);
+    const element = document.createElement('div');
+    element.className = 'cart-line';
+    element.innerHTML = `
+      <div class="info">
+        <div class="n font-family:'Fraunces',serif; font-weight:600;">${item.name}</div>
+        <div style="font-size:12px; color:rgba(246,241,228,0.5);">Base Price: ₹${item.price}</div>
+      </div>
+      <div class="qty-stepper">
+        <button onclick="modifyCartLineQty('${item.id}', ${item.qty - 1})">−</button>
+        <span>${item.qty}</span>
+        <button onclick="modifyCartLineQty('${item.id}', ${item.qty + 1})">+</button>
+      </div>
+      <div class="price mono" style="margin-left:14px; min-width:80px; text-align:right;">₹${item.price * item.qty}/-</div>
+      <button onclick="purgeCartLine('${item.id}')" style="background:none; border:none; color:var(--danger); font-size:18px; margin-left:12px;">&times;</button>
+    `;
+    linesTarget.appendChild(element);
+  });
+  document.getElementById('cart-total-val').textContent = `₹${subtotal}/-`;
+}
+
+function renderCheckoutSummary(){
+  const cart = getCartStore();
+  const target = document.getElementById('checkout-summary-target');
+  target.innerHTML = '';
+  let subtotal = 0;
+  cart.forEach(item => {
+    subtotal += (item.price * item.qty);
+    const row = document.createElement('div');
+    row.className = 'mini-line';
+    row.innerHTML = `<span>${item.name} (x${item.qty})</span><span class="mono">₹${item.price * item.qty}/-</span>`;
+    target.appendChild(row);
+  });
+  document.getElementById('checkout-total-val').textContent = `₹${subtotal}/-`;
+}
+
+function handleFormSubmit(event, successBlockId){
+  event.preventDefault();
+  event.target.style.display = 'none';
+  document.getElementById(successBlockId).classList.add('show');
+}
+
+function handleOrderSubmission(event){
+  event.preventDefault();
+  localStorage.removeItem(CART_KEY);
+  updateBadges();
+  switchView('order-success-screen');
+}
+
+document.addEventListener('DOMContentLoaded', updateBadges);
+</script>
+</body>
+</html>

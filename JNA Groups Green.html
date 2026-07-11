@@ -1,0 +1,1270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JNA Groups – Pure & Natural Garlic</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2d6a4f;
+    --green-light: #40916c;
+    --green-dark: #1b4332;
+    --gold: #d4a017;
+    --gold-light: #f0c030;
+    --cream: #faf7f0;
+    --white: #ffffff;
+    --dark: #1a1a1a;
+    --gray: #6b7280;
+    --gray-light: #f3f4f6;
+    --red: #e53e3e;
+    --border: #e5e7eb;
+    --shadow: 0 4px 24px rgba(0,0,0,0.10);
+    --radius: 12px;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); }
+  h1,h2,h3,h4 { font-family: 'Playfair Display', serif; }
+  a { text-decoration: none; color: inherit; }
+  img { max-width: 100%; display: block; }
+  button { cursor: pointer; font-family: 'DM Sans', sans-serif; }
+
+  /* ===== TOP BAR ===== */
+  .topbar {
+    background: var(--green-dark);
+    color: #fff;
+    font-size: 13px;
+    padding: 8px 0;
+    text-align: center;
+    letter-spacing: 0.5px;
+  }
+  .topbar span { color: var(--gold-light); font-weight: 600; }
+
+  /* ===== HEADER ===== */
+  header {
+    background: var(--white);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+  }
+  .header-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 70px;
+    gap: 20px;
+  }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-icon {
+    width: 44px; height: 44px;
+    background: linear-gradient(135deg, var(--green), var(--gold));
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 22px;
+  }
+  .logo-text h1 { font-size: 22px; color: var(--green-dark); line-height: 1; }
+  .logo-text p { font-size: 10px; color: var(--gray); letter-spacing: 2px; text-transform: uppercase; }
+
+  nav { display: flex; gap: 28px; align-items: center; }
+  nav a {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--dark);
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+    transition: all .2s;
+  }
+  nav a:hover, nav a.active { color: var(--green); border-bottom-color: var(--green); }
+
+  .header-actions { display: flex; align-items: center; gap: 16px; }
+  .header-actions button {
+    background: none; border: none; font-size: 20px; color: var(--dark);
+    position: relative; padding: 4px;
+  }
+  .cart-count {
+    position: absolute; top: -4px; right: -4px;
+    background: var(--red); color: #fff;
+    width: 18px; height: 18px; border-radius: 50%;
+    font-size: 10px; font-weight: 700;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .btn-login {
+    background: var(--green) !important; color: #fff !important;
+    padding: 8px 20px !important; border-radius: 24px !important;
+    font-size: 13px !important; font-weight: 600 !important;
+    transition: background .2s !important;
+  }
+  .btn-login:hover { background: var(--green-dark) !important; }
+
+  /* ===== PAGES ===== */
+  .page { display: none; animation: fadeIn .3s ease; }
+  .page.active { display: block; }
+  @keyframes fadeIn { from { opacity:0; transform:translateY(8px); } to { opacity:1; transform:none; } }
+
+  /* ===== HOME PAGE ===== */
+  .hero {
+    background: linear-gradient(135deg, var(--green-dark) 0%, var(--green) 60%, #52b788 100%);
+    color: #fff;
+    padding: 80px 24px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '🧄';
+    position: absolute; font-size: 300px; opacity: 0.06;
+    right: -60px; top: -60px; line-height: 1;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: var(--gold);
+    color: var(--green-dark);
+    font-size: 12px;
+    font-weight: 700;
+    padding: 4px 16px;
+    border-radius: 20px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero h2 { font-size: clamp(36px, 6vw, 72px); line-height: 1.1; margin-bottom: 20px; }
+  .hero h2 em { color: var(--gold-light); font-style: normal; }
+  .hero p { font-size: 18px; opacity: 0.88; max-width: 520px; margin: 0 auto 36px; }
+  .hero-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--gold); color: var(--green-dark);
+    padding: 14px 36px; border-radius: 40px;
+    font-weight: 700; font-size: 15px; border: none;
+    transition: all .2s; box-shadow: 0 4px 16px rgba(212,160,23,.4);
+  }
+  .btn-primary:hover { background: var(--gold-light); transform: translateY(-2px); }
+  .btn-outline-white {
+    background: transparent; color: #fff;
+    padding: 14px 36px; border-radius: 40px;
+    font-weight: 600; font-size: 15px;
+    border: 2px solid rgba(255,255,255,.5);
+    transition: all .2s;
+  }
+  .btn-outline-white:hover { background: rgba(255,255,255,.12); }
+
+  .features {
+    background: var(--white);
+    padding: 40px 24px;
+    display: flex; justify-content: center; gap: 40px; flex-wrap: wrap;
+    border-bottom: 1px solid var(--border);
+  }
+  .feature-item { display: flex; align-items: center; gap: 12px; }
+  .feature-item .icon { font-size: 32px; }
+  .feature-item strong { display: block; font-size: 14px; color: var(--green-dark); }
+  .feature-item span { font-size: 12px; color: var(--gray); }
+
+  .section { max-width: 1200px; margin: 0 auto; padding: 60px 24px; }
+  .section-title { text-align: center; margin-bottom: 48px; }
+  .section-title h2 { font-size: 36px; color: var(--green-dark); margin-bottom: 8px; }
+  .section-title p { color: var(--gray); font-size: 16px; }
+
+  /* PRODUCTS GRID */
+  .products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 24px;
+  }
+  .product-card {
+    background: var(--white);
+    border-radius: var(--radius);
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    transition: transform .2s, box-shadow .2s;
+    cursor: pointer;
+    border: 1px solid var(--border);
+  }
+  .product-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.15); }
+  .product-img {
+    background: linear-gradient(135deg, #e8f5e9, #f0f4e8);
+    height: 200px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 80px;
+    position: relative;
+  }
+  .badge-discount {
+    position: absolute; top: 12px; left: 12px;
+    background: var(--red); color: #fff;
+    font-size: 11px; font-weight: 700; padding: 3px 10px;
+    border-radius: 12px;
+  }
+  .product-info { padding: 16px; }
+  .product-info h3 { font-size: 15px; font-weight: 600; margin-bottom: 8px; color: var(--dark); font-family: 'DM Sans', sans-serif; }
+  .product-price { display: flex; align-items: center; gap: 8px; margin-bottom: 14px; }
+  .price-current { font-size: 18px; font-weight: 700; color: var(--green-dark); }
+  .price-old { font-size: 13px; color: var(--gray); text-decoration: line-through; }
+  .btn-cart {
+    width: 100%; padding: 10px;
+    background: var(--green); color: #fff;
+    border: none; border-radius: 8px;
+    font-weight: 600; font-size: 14px;
+    transition: background .2s;
+  }
+  .btn-cart:hover { background: var(--green-dark); }
+
+  /* CATEGORIES */
+  .categories-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 16px;
+  }
+  .cat-card {
+    background: var(--white);
+    border: 2px solid var(--border);
+    border-radius: var(--radius);
+    padding: 24px 16px;
+    text-align: center;
+    cursor: pointer;
+    transition: all .2s;
+  }
+  .cat-card:hover { border-color: var(--green); background: #f0faf5; transform: translateY(-2px); }
+  .cat-card .cat-icon { font-size: 40px; margin-bottom: 10px; }
+  .cat-card h3 { font-size: 14px; font-weight: 600; color: var(--green-dark); font-family: 'DM Sans', sans-serif; }
+
+  /* BANNER */
+  .promo-banner {
+    background: linear-gradient(135deg, var(--gold) 0%, #e8a010 100%);
+    border-radius: 16px;
+    padding: 40px 48px;
+    display: flex; align-items: center; justify-content: space-between;
+    gap: 24px; flex-wrap: wrap;
+    margin: 0 24px;
+  }
+  .promo-banner h2 { font-size: 32px; color: var(--green-dark); }
+  .promo-banner p { color: var(--green-dark); opacity: .8; margin-top: 8px; }
+  .btn-dark {
+    background: var(--green-dark); color: #fff;
+    padding: 14px 36px; border-radius: 40px;
+    font-weight: 700; font-size: 15px; border: none;
+    transition: all .2s; white-space: nowrap;
+  }
+  .btn-dark:hover { background: #0d2b1f; }
+
+  /* TESTIMONIALS */
+  .testimonials { background: var(--green-dark); padding: 60px 24px; }
+  .testimonials .section-title h2 { color: var(--gold-light); }
+  .testimonials .section-title p { color: rgba(255,255,255,.7); }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 24px;
+    max-width: 1200px; margin: 0 auto;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,.08);
+    border: 1px solid rgba(255,255,255,.15);
+    border-radius: var(--radius);
+    padding: 24px;
+    color: #fff;
+  }
+  .testimonial-card .stars { color: var(--gold-light); font-size: 16px; margin-bottom: 12px; }
+  .testimonial-card p { font-size: 14px; opacity: .88; line-height: 1.6; margin-bottom: 16px; }
+  .testimonial-card strong { font-size: 13px; color: var(--gold-light); }
+
+  /* ===== SHOP PAGE ===== */
+  .shop-layout {
+    max-width: 1200px; margin: 0 auto; padding: 40px 24px;
+    display: grid; grid-template-columns: 240px 1fr; gap: 32px;
+  }
+  .shop-sidebar { position: sticky; top: 90px; height: fit-content; }
+  .sidebar-box {
+    background: var(--white);
+    border-radius: var(--radius);
+    padding: 20px;
+    margin-bottom: 20px;
+    border: 1px solid var(--border);
+  }
+  .sidebar-box h3 { font-size: 15px; font-weight: 700; margin-bottom: 16px; color: var(--green-dark); font-family: 'DM Sans', sans-serif; }
+  .filter-list { list-style: none; }
+  .filter-list li {
+    padding: 8px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 14px; cursor: pointer;
+    display: flex; justify-content: space-between;
+    transition: color .2s;
+  }
+  .filter-list li:hover, .filter-list li.active { color: var(--green); }
+  .filter-list li span { background: var(--gray-light); border-radius: 10px; padding: 1px 8px; font-size: 12px; color: var(--gray); }
+  .price-range { display: flex; gap: 8px; align-items: center; }
+  .price-range input { width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 6px; font-size: 13px; }
+  .shop-main {}
+  .shop-header {
+    display: flex; justify-content: space-between; align-items: center;
+    margin-bottom: 24px; flex-wrap: wrap; gap: 12px;
+  }
+  .shop-header p { color: var(--gray); font-size: 14px; }
+  .shop-header select {
+    padding: 8px 16px; border: 1px solid var(--border);
+    border-radius: 8px; font-family: 'DM Sans', sans-serif;
+    font-size: 14px; background: var(--white);
+  }
+
+  /* ===== PRODUCT DETAIL PAGE ===== */
+  .product-detail {
+    max-width: 1100px; margin: 0 auto; padding: 40px 24px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  }
+  .product-gallery {
+    background: linear-gradient(135deg, #e8f5e9, #f0f4e8);
+    border-radius: 16px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 160px; min-height: 420px;
+  }
+  .product-detail-info {}
+  .breadcrumb { font-size: 13px; color: var(--gray); margin-bottom: 12px; }
+  .breadcrumb span { color: var(--green); }
+  .product-detail-info h2 { font-size: 32px; color: var(--green-dark); margin-bottom: 12px; }
+  .rating-row { display: flex; align-items: center; gap: 8px; margin-bottom: 16px; }
+  .stars-gold { color: var(--gold); font-size: 16px; }
+  .rating-row span { font-size: 13px; color: var(--gray); }
+  .detail-price { font-size: 36px; font-weight: 800; color: var(--green-dark); margin-bottom: 8px; }
+  .detail-price-old { font-size: 18px; color: var(--gray); text-decoration: line-through; margin-bottom: 20px; }
+  .detail-desc { font-size: 14px; color: var(--gray); line-height: 1.7; margin-bottom: 24px; }
+  .weight-options { display: flex; gap: 10px; flex-wrap: wrap; margin-bottom: 24px; }
+  .weight-btn {
+    padding: 8px 20px; border: 2px solid var(--border);
+    border-radius: 8px; background: var(--white);
+    font-weight: 600; font-size: 14px; transition: all .2s;
+  }
+  .weight-btn.active { border-color: var(--green); color: var(--green); background: #f0faf5; }
+  .quantity-row { display: flex; align-items: center; gap: 16px; margin-bottom: 24px; }
+  .qty-control { display: flex; align-items: center; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .qty-control button { width: 40px; height: 40px; background: var(--gray-light); border: none; font-size: 18px; font-weight: 700; }
+  .qty-control span { padding: 0 20px; font-weight: 600; }
+  .btn-add-cart {
+    flex: 1; padding: 12px; background: var(--green); color: #fff;
+    border: none; border-radius: 8px; font-weight: 700; font-size: 15px;
+    transition: background .2s;
+  }
+  .btn-add-cart:hover { background: var(--green-dark); }
+  .btn-buy-now {
+    width: 100%; padding: 14px; background: var(--gold); color: var(--green-dark);
+    border: none; border-radius: 8px; font-weight: 700; font-size: 15px;
+    margin-bottom: 16px; transition: all .2s;
+  }
+  .btn-buy-now:hover { background: var(--gold-light); }
+  .detail-badges { display: flex; gap: 12px; flex-wrap: wrap; }
+  .detail-badge { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--green-dark); font-weight: 500; }
+
+  /* ===== CART PAGE ===== */
+  .cart-layout {
+    max-width: 1100px; margin: 0 auto; padding: 40px 24px;
+    display: grid; grid-template-columns: 1fr 360px; gap: 32px;
+  }
+  .cart-items {}
+  .cart-item {
+    background: var(--white); border-radius: var(--radius);
+    border: 1px solid var(--border);
+    padding: 20px; margin-bottom: 16px;
+    display: flex; gap: 16px; align-items: center;
+  }
+  .cart-item-img {
+    width: 80px; height: 80px; flex-shrink: 0;
+    background: linear-gradient(135deg, #e8f5e9, #f0f4e8);
+    border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 36px;
+  }
+  .cart-item-info { flex: 1; }
+  .cart-item-info h3 { font-size: 15px; font-weight: 600; margin-bottom: 4px; font-family: 'DM Sans', sans-serif; }
+  .cart-item-info p { font-size: 13px; color: var(--gray); }
+  .cart-item-price { font-size: 18px; font-weight: 700; color: var(--green-dark); }
+  .cart-item-remove { background: none; border: none; color: var(--gray); font-size: 20px; padding: 4px; }
+  .cart-item-remove:hover { color: var(--red); }
+  .order-summary {
+    background: var(--white); border-radius: var(--radius);
+    border: 1px solid var(--border); padding: 24px;
+    height: fit-content; position: sticky; top: 90px;
+  }
+  .order-summary h3 { font-size: 20px; margin-bottom: 20px; color: var(--green-dark); }
+  .summary-row { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .summary-row.total { font-size: 18px; font-weight: 700; color: var(--green-dark); border-bottom: none; padding-top: 16px; }
+  .coupon-row { display: flex; gap: 8px; margin: 16px 0; }
+  .coupon-row input { flex: 1; padding: 10px 14px; border: 1px solid var(--border); border-radius: 8px; font-size: 14px; }
+  .coupon-row button { padding: 10px 16px; background: var(--green-dark); color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; }
+  .btn-checkout {
+    width: 100%; padding: 16px; background: var(--green); color: #fff;
+    border: none; border-radius: 10px; font-weight: 700; font-size: 16px;
+    margin-top: 20px; transition: background .2s;
+  }
+  .btn-checkout:hover { background: var(--green-dark); }
+
+  /* ===== CHECKOUT / PAYMENT PAGE ===== */
+  .checkout-layout {
+    max-width: 1100px; margin: 0 auto; padding: 40px 24px;
+    display: grid; grid-template-columns: 1fr 380px; gap: 32px;
+  }
+  .checkout-steps { display: flex; gap: 0; margin-bottom: 32px; }
+  .step {
+    flex: 1; text-align: center; padding: 12px;
+    background: var(--gray-light); font-size: 13px; font-weight: 600;
+    color: var(--gray); border-right: 1px solid var(--border);
+    position: relative;
+  }
+  .step.active { background: var(--green); color: #fff; }
+  .step.done { background: var(--green-light); color: #fff; }
+  .form-section {
+    background: var(--white); border-radius: var(--radius);
+    border: 1px solid var(--border); padding: 24px; margin-bottom: 20px;
+  }
+  .form-section h3 { font-size: 18px; color: var(--green-dark); margin-bottom: 20px; }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .form-full { grid-column: 1/-1; }
+  .form-group label { display: block; font-size: 13px; font-weight: 600; margin-bottom: 6px; color: var(--dark); }
+  .form-group input, .form-group select, .form-group textarea {
+    width: 100%; padding: 12px 14px;
+    border: 1px solid var(--border); border-radius: 8px;
+    font-family: 'DM Sans', sans-serif; font-size: 14px;
+    transition: border-color .2s;
+  }
+  .form-group input:focus, .form-group select:focus {
+    outline: none; border-color: var(--green);
+  }
+  /* Payment methods */
+  .payment-methods { display: flex; flex-direction: column; gap: 12px; }
+  .payment-method {
+    border: 2px solid var(--border);
+    border-radius: 10px; padding: 16px 20px;
+    cursor: pointer; transition: all .2s;
+    display: flex; align-items: center; gap: 14px;
+  }
+  .payment-method.selected { border-color: var(--green); background: #f0faf5; }
+  .payment-method input[type="radio"] { accent-color: var(--green); width: 18px; height: 18px; }
+  .payment-method .pm-icon { font-size: 24px; }
+  .payment-method strong { display: block; font-size: 15px; }
+  .payment-method span { font-size: 12px; color: var(--gray); }
+  .card-fields { margin-top: 16px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .card-fields.hidden { display: none; }
+  .upi-field { margin-top: 16px; }
+  .upi-field.hidden { display: none; }
+  .secure-badge {
+    display: flex; align-items: center; gap: 8px;
+    background: #f0faf5; border-radius: 8px; padding: 12px 16px; margin-top: 16px;
+    font-size: 13px; color: var(--green-dark); font-weight: 500;
+  }
+  .order-review { background: var(--white); border-radius: var(--radius); border: 1px solid var(--border); padding: 24px; height: fit-content; position: sticky; top: 90px; }
+  .order-review h3 { font-size: 18px; color: var(--green-dark); margin-bottom: 16px; }
+  .review-item { display: flex; justify-content: space-between; padding: 10px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .review-total { font-size: 20px; font-weight: 800; color: var(--green-dark); display: flex; justify-content: space-between; padding-top: 14px; }
+
+  /* ===== SUCCESS PAGE ===== */
+  .success-page {
+    max-width: 600px; margin: 60px auto; padding: 40px 24px; text-align: center;
+  }
+  .success-icon { font-size: 80px; margin-bottom: 20px; }
+  .success-page h2 { font-size: 36px; color: var(--green-dark); margin-bottom: 12px; }
+  .success-page p { color: var(--gray); font-size: 16px; line-height: 1.6; margin-bottom: 32px; }
+  .order-box { background: var(--white); border: 1px solid var(--border); border-radius: var(--radius); padding: 24px; text-align: left; margin-bottom: 32px; }
+  .order-box h3 { font-size: 16px; margin-bottom: 16px; color: var(--green-dark); }
+  .order-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--border); font-size: 14px; }
+  .order-row:last-child { border-bottom: none; }
+
+  /* ===== CONTACT PAGE ===== */
+  .contact-layout {
+    max-width: 1100px; margin: 0 auto; padding: 60px 24px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 48px;
+  }
+  .contact-info h2 { font-size: 36px; color: var(--green-dark); margin-bottom: 16px; }
+  .contact-info p { color: var(--gray); line-height: 1.7; margin-bottom: 32px; }
+  .contact-item { display: flex; gap: 16px; margin-bottom: 24px; }
+  .contact-item .ci-icon { width: 48px; height: 48px; background: #f0faf5; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; flex-shrink: 0; }
+  .contact-item strong { display: block; font-size: 14px; color: var(--dark); margin-bottom: 2px; }
+  .contact-item span { font-size: 14px; color: var(--gray); }
+  .contact-form { background: var(--white); border-radius: 16px; padding: 32px; border: 1px solid var(--border); }
+  .contact-form h3 { font-size: 24px; color: var(--green-dark); margin-bottom: 24px; }
+  .contact-form .form-group { margin-bottom: 16px; }
+  .contact-form textarea { resize: vertical; min-height: 120px; }
+  .btn-submit { width: 100%; padding: 14px; background: var(--green); color: #fff; border: none; border-radius: 10px; font-weight: 700; font-size: 16px; transition: background .2s; }
+  .btn-submit:hover { background: var(--green-dark); }
+
+  /* ===== PAGE HEADER ===== */
+  .page-header {
+    background: linear-gradient(135deg, var(--green-dark), var(--green));
+    color: #fff; padding: 40px 24px; text-align: center;
+  }
+  .page-header h2 { font-size: 36px; margin-bottom: 8px; }
+  .page-header p { opacity: .8; font-size: 15px; }
+
+  /* ===== FOOTER ===== */
+  footer {
+    background: var(--green-dark);
+    color: rgba(255,255,255,.85);
+    padding: 60px 24px 24px;
+  }
+  .footer-grid {
+    max-width: 1200px; margin: 0 auto;
+    display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid rgba(255,255,255,.15);
+    flex-wrap: wrap;
+  }
+  .footer-about h3 { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--gold-light); margin-bottom: 12px; }
+  .footer-about p { font-size: 14px; line-height: 1.7; opacity: .8; margin-bottom: 20px; }
+  .footer-social { display: flex; gap: 10px; }
+  .footer-social a {
+    width: 38px; height: 38px;
+    background: rgba(255,255,255,.1);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; transition: background .2s;
+  }
+  .footer-social a:hover { background: var(--gold); }
+  .footer-col h4 { font-size: 14px; font-weight: 700; color: var(--gold-light); margin-bottom: 16px; text-transform: uppercase; letter-spacing: 1px; font-family: 'DM Sans', sans-serif; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { font-size: 14px; opacity: .8; transition: opacity .2s; }
+  .footer-col ul li a:hover { opacity: 1; color: var(--gold-light); }
+  .footer-bottom {
+    max-width: 1200px; margin: 24px auto 0;
+    display: flex; justify-content: space-between; align-items: center;
+    font-size: 13px; opacity: .6; flex-wrap: wrap; gap: 12px;
+  }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 24px; right: 24px;
+    background: var(--green-dark); color: #fff;
+    padding: 14px 24px; border-radius: 10px;
+    font-size: 14px; font-weight: 600;
+    z-index: 9999; transform: translateY(100px);
+    transition: transform .3s ease;
+    box-shadow: 0 8px 24px rgba(0,0,0,.2);
+  }
+  .toast.show { transform: translateY(0); }
+
+  /* MOBILE */
+  .hamburger { display: none; background: none; border: none; font-size: 24px; cursor: pointer; }
+  @media (max-width: 900px) {
+    .hamburger { display: block; }
+    nav { display: none; }
+    nav.open { display: flex; flex-direction: column; position: absolute; top: 70px; left: 0; width: 100%; background: var(--white); padding: 20px; box-shadow: var(--shadow); z-index: 999; }
+    .shop-layout { grid-template-columns: 1fr; }
+    .shop-sidebar { display: none; }
+    .product-detail { grid-template-columns: 1fr; }
+    .cart-layout, .checkout-layout, .contact-layout, .footer-grid { grid-template-columns: 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .promo-banner { padding: 24px; }
+  }
+
+  /* LOGIN MODAL */
+  .modal-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(0,0,0,.5); z-index: 2000;
+    align-items: center; justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+  .modal {
+    background: var(--white); border-radius: 16px; padding: 40px;
+    width: 100%; max-width: 420px; position: relative;
+  }
+  .modal h2 { font-size: 28px; color: var(--green-dark); margin-bottom: 24px; }
+  .modal .form-group { margin-bottom: 16px; }
+  .modal-close { position: absolute; top: 16px; right: 20px; background: none; border: none; font-size: 24px; color: var(--gray); }
+  .modal-tabs { display: flex; gap: 0; margin-bottom: 24px; border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+  .modal-tab { flex: 1; padding: 10px; background: none; border: none; font-weight: 600; font-size: 14px; color: var(--gray); transition: all .2s; }
+  .modal-tab.active { background: var(--green); color: #fff; }
+  .tab-content { display: none; }
+  .tab-content.active { display: block; }
+  .btn-modal-submit { width: 100%; padding: 13px; background: var(--green); color: #fff; border: none; border-radius: 8px; font-weight: 700; font-size: 15px; margin-top: 8px; }
+</style>
+</head>
+<body>
+
+<!-- TOP BAR -->
+<div class="topbar">
+  🚚 <span>₹999+</span> ke order par FREE Delivery! &nbsp;|&nbsp; 📞 Helpline: <span>+91 98765 43210</span>
+</div>
+
+<!-- HEADER -->
+<header>
+  <div class="header-inner">
+    <div class="logo" onclick="showPage('home')" style="cursor:pointer">
+      <div class="logo-icon">🧄</div>
+      <div class="logo-text">
+        <h1>JNA Groups</h1>
+        <p>Pure & Natural Garlic</p>
+      </div>
+    </div>
+    <button class="hamburger" onclick="toggleNav()">☰</button>
+    <nav id="main-nav">
+      <a href="#" class="active" onclick="showPage('home')">Home</a>
+      <a href="#" onclick="showPage('shop')">Shop</a>
+      <a href="#" onclick="showPage('contact')">Contact</a>
+    </nav>
+    <div class="header-actions">
+      <button onclick="showPage('cart')" title="Cart">
+        🛒
+        <span class="cart-count" id="cart-count">0</span>
+      </button>
+      <button class="btn-login" onclick="openModal()">Login</button>
+    </div>
+  </div>
+</header>
+
+<!-- ============================
+     HOME PAGE
+============================= -->
+<div class="page active" id="page-home">
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-badge">100% Natural & Pure</div>
+    <h2>India's Finest<br><em>Fresh Garlic</em><br>Delivered to You</h2>
+    <p>Kashmiri, Desi, Ooty, Peeled – Premium quality garlic, farm-fresh, straight to your doorstep.</p>
+    <div class="hero-btns">
+      <button class="btn-primary" onclick="showPage('shop')">Shop Now</button>
+      <button class="btn-outline-white" onclick="showPage('contact')">Contact Us</button>
+    </div>
+  </div>
+
+  <!-- Features -->
+  <div class="features">
+    <div class="feature-item"><div class="icon">🌿</div><div><strong>100% Natural</strong><span>No chemicals, no preservatives</span></div></div>
+    <div class="feature-item"><div class="icon">🚚</div><div><strong>Free Shipping</strong><span>Orders above ₹999</span></div></div>
+    <div class="feature-item"><div class="icon">🔒</div><div><strong>Secure Payment</strong><span>100% safe checkout</span></div></div>
+    <div class="feature-item"><div class="icon">🏆</div><div><strong>Premium Quality</strong><span>Handpicked & graded</span></div></div>
+  </div>
+
+  <!-- Categories -->
+  <div class="section">
+    <div class="section-title">
+      <h2>Shop by Category</h2>
+      <p>Choose from our wide range of premium garlic varieties</p>
+    </div>
+    <div class="categories-grid">
+      <div class="cat-card" onclick="showPage('shop')"><div class="cat-icon">🧄</div><h3>Kashmiri Garlic</h3></div>
+      <div class="cat-card" onclick="showPage('shop')"><div class="cat-icon">🫙</div><h3>Peeled Garlic</h3></div>
+      <div class="cat-card" onclick="showPage('shop')"><div class="cat-icon">⚪</div><h3>Single Clove Garlic</h3></div>
+      <div class="cat-card" onclick="showPage('shop')"><div class="cat-icon">🌾</div><h3>Whole Desi Garlic</h3></div>
+      <div class="cat-card" onclick="showPage('shop')"><div class="cat-icon">🏔️</div><h3>Whole Ooty Garlic</h3></div>
+    </div>
+  </div>
+
+  <!-- New Arrivals -->
+  <div class="section" style="padding-top:0">
+    <div class="section-title">
+      <h2>New Arrivals</h2>
+      <p>Fresh stock, best prices – limited time offers</p>
+    </div>
+    <div class="products-grid" id="home-products"></div>
+  </div>
+
+  <!-- Promo Banner -->
+  <div class="promo-banner">
+    <div>
+      <h2>Get 10% OFF on Your First Order!</h2>
+      <p>Use code <strong>JNA10</strong> at checkout. Limited time offer.</p>
+    </div>
+    <button class="btn-dark" onclick="showPage('shop')">Shop Now →</button>
+  </div>
+
+  <!-- Featured Products -->
+  <div class="section">
+    <div class="section-title">
+      <h2>Featured Products</h2>
+      <p>Our best sellers – loved by thousands of customers</p>
+    </div>
+    <div class="products-grid" id="featured-products"></div>
+  </div>
+
+  <!-- Testimonials -->
+  <div class="testimonials">
+    <div class="section-title">
+      <h2>What Our Customers Say</h2>
+      <p>Real reviews from real people</p>
+    </div>
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Ekdum fresh aur aromatic garlic mila! JNA Groups se hi order karta hoon har baar. Quality mein koi compromise nahi."</p>
+        <strong>— Ramesh Sharma, Jaipur</strong>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★★</div>
+        <p>"Kashmiri garlic bahut powerful hai, sirf ek kali khaane se fark dikh raha hai. Packaging bhi seedhi thi. Highly recommended!"</p>
+        <strong>— Priya Mehta, Mumbai</strong>
+      </div>
+      <div class="testimonial-card">
+        <div class="stars">★★★★☆</div>
+        <p>"Fast delivery, aur garlic bilkul fresh tha. Peeled garlic ne cooking ka time aadha kar diya. Bahut achhi service!"</p>
+        <strong>— Sunil Verma, Delhi</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     SHOP PAGE
+============================= -->
+<div class="page" id="page-shop">
+  <div class="page-header">
+    <h2>Our Shop</h2>
+    <p>Premium garlic varieties at best prices</p>
+  </div>
+  <div class="shop-layout">
+    <aside class="shop-sidebar">
+      <div class="sidebar-box">
+        <h3>Categories</h3>
+        <ul class="filter-list">
+          <li class="active">All Products <span>12</span></li>
+          <li>Kashmiri Garlic <span>3</span></li>
+          <li>Peeled Garlic <span>2</span></li>
+          <li>Single Clove <span>2</span></li>
+          <li>Whole Desi <span>3</span></li>
+          <li>Whole Ooty <span>2</span></li>
+        </ul>
+      </div>
+      <div class="sidebar-box">
+        <h3>Price Range</h3>
+        <div class="price-range">
+          <input type="number" placeholder="Min ₹" value="0">
+          <span>–</span>
+          <input type="number" placeholder="Max ₹" value="2000">
+        </div>
+      </div>
+    </aside>
+    <div class="shop-main">
+      <div class="shop-header">
+        <p>Showing all <strong>12</strong> products</p>
+        <select><option>Sort by: Default</option><option>Price: Low to High</option><option>Price: High to Low</option><option>Newest First</option></select>
+      </div>
+      <div class="products-grid" id="shop-products"></div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     PRODUCT DETAIL PAGE
+============================= -->
+<div class="page" id="page-product">
+  <div style="max-width:1100px;margin:20px auto;padding:0 24px">
+    <div class="breadcrumb">JNA Groups &gt; Shop &gt; <span id="pd-cat">Garlic</span></div>
+  </div>
+  <div class="product-detail">
+    <div class="product-gallery" id="pd-img">🧄</div>
+    <div class="product-detail-info">
+      <h2 id="pd-name">Product Name</h2>
+      <div class="rating-row">
+        <span class="stars-gold">★★★★★</span>
+        <span>(47 reviews)</span>
+      </div>
+      <div class="detail-price" id="pd-price">₹249</div>
+      <div class="detail-price-old" id="pd-old">₹299</div>
+      <p class="detail-desc" id="pd-desc">Fresh, premium quality garlic from the finest farms of India. Hand-picked, cleaned and hygienically packed to retain its natural freshness and aroma.</p>
+      <div>
+        <p style="font-size:13px;font-weight:700;margin-bottom:10px">Select Weight:</p>
+        <div class="weight-options">
+          <button class="weight-btn active">250g</button>
+          <button class="weight-btn">500g</button>
+          <button class="weight-btn">1 kg</button>
+          <button class="weight-btn">5 kg</button>
+        </div>
+      </div>
+      <div class="quantity-row" style="margin-top:20px">
+        <div class="qty-control">
+          <button onclick="changeQty(-1)">−</button>
+          <span id="qty">1</span>
+          <button onclick="changeQty(1)">+</button>
+        </div>
+        <button class="btn-add-cart" onclick="addToCartFromDetail()">Add to Cart 🛒</button>
+      </div>
+      <button class="btn-buy-now" onclick="buyNow()">Buy Now</button>
+      <div class="detail-badges">
+        <div class="detail-badge">✅ 100% Natural</div>
+        <div class="detail-badge">🚚 Free Shipping ₹999+</div>
+        <div class="detail-badge">🔒 Secure Payment</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     CART PAGE
+============================= -->
+<div class="page" id="page-cart">
+  <div class="page-header">
+    <h2>Your Cart</h2>
+    <p>Review your items before checkout</p>
+  </div>
+  <div class="cart-layout">
+    <div class="cart-items" id="cart-items-list">
+      <!-- Rendered by JS -->
+    </div>
+    <div class="order-summary">
+      <h3>Order Summary</h3>
+      <div class="summary-row"><span>Subtotal</span><span id="s-subtotal">₹0</span></div>
+      <div class="summary-row"><span>Delivery</span><span id="s-delivery">₹0</span></div>
+      <div class="summary-row"><span>Discount</span><span id="s-discount" style="color:var(--green)">-₹0</span></div>
+      <div class="summary-row total"><span>Total</span><span id="s-total">₹0</span></div>
+      <div class="coupon-row">
+        <input type="text" placeholder="Enter coupon code" id="coupon-input">
+        <button onclick="applyCoupon()">Apply</button>
+      </div>
+      <button class="btn-checkout" onclick="showPage('checkout')">Proceed to Checkout →</button>
+      <button style="width:100%;padding:12px;margin-top:10px;background:none;border:1px solid var(--border);border-radius:10px;font-weight:600;font-size:14px;" onclick="showPage('shop')">Continue Shopping</button>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     CHECKOUT / PAYMENT PAGE
+============================= -->
+<div class="page" id="page-checkout">
+  <div class="page-header">
+    <h2>Checkout</h2>
+    <p>Secure & safe payment</p>
+  </div>
+  <div style="max-width:1100px;margin:24px auto;padding:0 24px">
+    <div class="checkout-steps">
+      <div class="step done">✓ Cart</div>
+      <div class="step active">📦 Shipping</div>
+      <div class="step">💳 Payment</div>
+      <div class="step">✅ Confirm</div>
+    </div>
+  </div>
+  <div class="checkout-layout">
+    <div>
+      <!-- Billing Details -->
+      <div class="form-section">
+        <h3>📦 Billing & Shipping Details</h3>
+        <div class="form-grid">
+          <div class="form-group"><label>First Name *</label><input type="text" placeholder="Ramesh"></div>
+          <div class="form-group"><label>Last Name *</label><input type="text" placeholder="Sharma"></div>
+          <div class="form-group form-full"><label>Email Address *</label><input type="email" placeholder="ramesh@example.com"></div>
+          <div class="form-group"><label>Phone Number *</label><input type="tel" placeholder="+91 98765 43210"></div>
+          <div class="form-group"><label>Pincode *</label><input type="text" placeholder="302001"></div>
+          <div class="form-group form-full"><label>Full Address *</label><input type="text" placeholder="House No., Street, Area"></div>
+          <div class="form-group"><label>City *</label><input type="text" placeholder="Jaipur"></div>
+          <div class="form-group"><label>State *</label>
+            <select>
+              <option>Select State</option>
+              <option>Rajasthan</option><option>Delhi</option><option>Maharashtra</option>
+              <option>Gujarat</option><option>Uttar Pradesh</option><option>Karnataka</option>
+              <option>Tamil Nadu</option><option>West Bengal</option><option>Madhya Pradesh</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- Payment Methods -->
+      <div class="form-section">
+        <h3>💳 Payment Method</h3>
+        <div class="payment-methods">
+          <label class="payment-method selected" onclick="selectPayment(this,'upi')">
+            <input type="radio" name="payment" checked>
+            <span class="pm-icon">📱</span>
+            <div><strong>UPI / Google Pay / PhonePe</strong><span>Pay instantly via UPI</span></div>
+          </label>
+          <label class="payment-method" onclick="selectPayment(this,'card')">
+            <input type="radio" name="payment">
+            <span class="pm-icon">💳</span>
+            <div><strong>Credit / Debit Card</strong><span>Visa, Mastercard, RuPay</span></div>
+          </label>
+          <label class="payment-method" onclick="selectPayment(this,'netbanking')">
+            <input type="radio" name="payment">
+            <span class="pm-icon">🏦</span>
+            <div><strong>Net Banking</strong><span>All major Indian banks</span></div>
+          </label>
+          <label class="payment-method" onclick="selectPayment(this,'cod')">
+            <input type="radio" name="payment">
+            <span class="pm-icon">💵</span>
+            <div><strong>Cash on Delivery</strong><span>Pay when you receive</span></div>
+          </label>
+        </div>
+
+        <!-- UPI Field -->
+        <div class="upi-field" id="upi-field">
+          <div class="form-group" style="margin-top:16px">
+            <label>UPI ID / VPA</label>
+            <input type="text" placeholder="yourname@upi">
+          </div>
+          <div style="display:flex;gap:12px;margin-top:12px;flex-wrap:wrap">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/24/Paytm_Logo_%28standalone%29.svg/120px-Paytm_Logo_%28standalone%29.svg.png" style="height:30px;object-fit:contain" alt="Paytm">
+            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f2/Google_Pay_Logo.svg/120px-Google_Pay_Logo.svg.png" style="height:30px;object-fit:contain" alt="GPay">
+          </div>
+        </div>
+
+        <!-- Card Fields -->
+        <div class="card-fields hidden" id="card-fields">
+          <div class="form-group form-full" style="grid-column:1/-1"><label>Card Number</label><input type="text" placeholder="1234 5678 9012 3456" maxlength="19"></div>
+          <div class="form-group"><label>Expiry Date</label><input type="text" placeholder="MM / YY" maxlength="7"></div>
+          <div class="form-group"><label>CVV</label><input type="text" placeholder="•••" maxlength="3"></div>
+          <div class="form-group form-full" style="grid-column:1/-1"><label>Cardholder Name</label><input type="text" placeholder="Name on card"></div>
+        </div>
+
+        <div class="secure-badge">
+          🔒 Your payment is 100% secure and encrypted. We never store your card details.
+        </div>
+      </div>
+
+      <button class="btn-checkout" onclick="placeOrder()" style="font-size:18px;padding:18px">
+        🔒 Place Order & Pay
+      </button>
+    </div>
+
+    <!-- Order Review -->
+    <div class="order-review">
+      <h3>Your Order</h3>
+      <div id="checkout-items"></div>
+      <div style="border-top:1px solid var(--border);margin-top:12px;padding-top:12px">
+        <div class="review-item"><span>Subtotal</span><span id="co-subtotal">₹0</span></div>
+        <div class="review-item"><span>Delivery</span><span id="co-delivery">₹0</span></div>
+        <div class="review-item"><span>Discount (JNA10)</span><span style="color:var(--green)" id="co-discount">-₹0</span></div>
+      </div>
+      <div class="review-total"><span>Total</span><span id="co-total">₹0</span></div>
+      <div style="margin-top:16px;background:#f0faf5;border-radius:8px;padding:12px;font-size:13px;color:var(--green-dark)">
+        🚚 Estimated delivery: <strong>3–5 business days</strong>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============================
+     SUCCESS PAGE
+============================= -->
+<div class="page" id="page-success">
+  <div class="success-page">
+    <div class="success-icon">✅</div>
+    <h2>Order Placed Successfully!</h2>
+    <p>Thank you for shopping with <strong>JNA Groups</strong>. Your order has been confirmed and will be delivered within 3–5 business days.</p>
+    <div class="order-box">
+      <h3>Order Details</h3>
+      <div class="order-row"><span>Order ID</span><span style="color:var(--green);font-weight:700">#JNA-20260515</span></div>
+      <div class="order-row"><span>Payment</span><span>UPI – Confirmed ✓</span></div>
+      <div class="order-row"><span>Delivery</span><span>3–5 Business Days</span></div>
+      <div class="order-row"><span>Total Paid</span><span id="success-total" style="font-weight:700">₹0</span></div>
+    </div>
+    <button class="btn-primary" onclick="showPage('home')">← Continue Shopping</button>
+  </div>
+</div>
+
+<!-- ============================
+     CONTACT PAGE
+============================= -->
+<div class="page" id="page-contact">
+  <div class="page-header">
+    <h2>Contact Us</h2>
+    <p>We're here to help you</p>
+  </div>
+  <div class="contact-layout">
+    <div class="contact-info">
+      <h2>Get in Touch with JNA Groups</h2>
+      <p>Hamse kisi bhi sawaal ke liye sampark karein. Hum aapki madad karne ke liye taiyaar hain – Mon–Sat, 8 AM to 6 PM.</p>
+      <div class="contact-item">
+        <div class="ci-icon">📞</div>
+        <div><strong>Phone / WhatsApp</strong><span>+91 98765 43210</span></div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">✉️</div>
+        <div><strong>Email</strong><span>contact@jnagroups.com</span></div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">📍</div>
+        <div><strong>Address</strong><span>JNA Groups, Industrial Area,<br>Rajasthan, India</span></div>
+      </div>
+      <div class="contact-item">
+        <div class="ci-icon">🕐</div>
+        <div><strong>Business Hours</strong><span>Mon–Sat: 8:00 AM – 6:00 PM<br>Sunday: 10:00 AM – 4:00 PM</span></div>
+      </div>
+    </div>
+    <div class="contact-form">
+      <h3>Send a Message</h3>
+      <div class="form-group"><label>Your Name *</label><input type="text" placeholder="Aapka naam"></div>
+      <div class="form-group"><label>Email *</label><input type="email" placeholder="email@example.com"></div>
+      <div class="form-group"><label>Phone</label><input type="tel" placeholder="+91 xxxxx xxxxx"></div>
+      <div class="form-group"><label>Message *</label><textarea class="form-group" placeholder="Apna sawaal ya feedback likhein..."></textarea></div>
+      <button class="btn-submit" onclick="submitContact()">Send Message ✉️</button>
+    </div>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-grid">
+    <div class="footer-about">
+      <h3>🧄 JNA Groups</h3>
+      <p>India ke sabse premium garlic ka aapka trusted source. Farm-fresh, natural, aur hygienically packed garlic – seedha aapke ghar tak.</p>
+      <div class="footer-social">
+        <a href="#">📘</a>
+        <a href="#">📸</a>
+        <a href="#">🐦</a>
+        <a href="#">▶️</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Quick Links</h4>
+      <ul>
+        <li><a href="#" onclick="showPage('home')">Home</a></li>
+        <li><a href="#" onclick="showPage('shop')">Shop</a></li>
+        <li><a href="#" onclick="showPage('contact')">Contact</a></li>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Categories</h4>
+      <ul>
+        <li><a href="#" onclick="showPage('shop')">Kashmiri Garlic</a></li>
+        <li><a href="#" onclick="showPage('shop')">Peeled Garlic</a></li>
+        <li><a href="#" onclick="showPage('shop')">Single Clove</a></li>
+        <li><a href="#" onclick="showPage('shop')">Whole Desi Garlic</a></li>
+        <li><a href="#" onclick="showPage('shop')">Whole Ooty Garlic</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Policies</h4>
+      <ul>
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms & Conditions</a></li>
+        <li><a href="#">Shipping Policy</a></li>
+        <li><a href="#">Refund Policy</a></li>
+        <li><a href="#">Order Tracking</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 JNA Groups. All rights reserved.</span>
+    <span>Made with 🧄 & ❤️ in India</span>
+  </div>
+</footer>
+
+<!-- LOGIN MODAL -->
+<div class="modal-overlay" id="login-modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <h2>Welcome Back!</h2>
+    <div class="modal-tabs">
+      <button class="modal-tab active" onclick="switchTab('login')">Login</button>
+      <button class="modal-tab" onclick="switchTab('register')">Register</button>
+    </div>
+    <div class="tab-content active" id="tab-login">
+      <div class="form-group"><label>Email / Phone *</label><input type="text" placeholder="email@example.com"></div>
+      <div class="form-group"><label>Password *</label><input type="password" placeholder="••••••••"></div>
+      <button class="btn-modal-submit" onclick="closeModal();showToast('Login successful! Welcome to JNA Groups.')">Login</button>
+      <p style="text-align:center;margin-top:14px;font-size:13px;color:var(--gray)"><a href="#" style="color:var(--green)">Forgot password?</a></p>
+    </div>
+    <div class="tab-content" id="tab-register">
+      <div class="form-group"><label>Full Name *</label><input type="text" placeholder="Your name"></div>
+      <div class="form-group"><label>Email *</label><input type="email" placeholder="email@example.com"></div>
+      <div class="form-group"><label>Phone *</label><input type="tel" placeholder="+91 xxxxx xxxxx"></div>
+      <div class="form-group"><label>Password *</label><input type="password" placeholder="Create password"></div>
+      <button class="btn-modal-submit" onclick="closeModal();showToast('Registration successful! Welcome to JNA Groups.')">Create Account</button>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">✅ Added to cart!</div>
+
+<script>
+// ===== DATA =====
+const products = [
+  { id:1, name:'JNA Peeled Garlic (Vinegar) 230g', price:249, old:299, discount:17, emoji:'🫙', cat:'Peeled Garlic', desc:'Ready-to-use vinegar peeled garlic, hygienically packed. Perfect for restaurants and home kitchens.' },
+  { id:2, name:'JNA Premium Desi Indian Garlic (42mm+)', price:200, old:295, discount:32, emoji:'🧄', cat:'Whole Desi Garlic', desc:'Hand-graded, large-sized desi garlic with intense aroma and flavor. Available in multiple sizes.' },
+  { id:3, name:'JNA Riyavan Indian Garlic', price:250, old:312, discount:20, emoji:'🌾', cat:'Whole Desi Garlic', desc:'Traditional Indian variety, grown in natural conditions for the best flavor and potency.' },
+  { id:4, name:'JNA Single Clove Garlic – Premium', price:1200, old:1400, discount:14, emoji:'⚪', cat:'Single Clove Garlic', desc:'The rare single clove (Ek Danta) garlic, revered in Ayurveda for its medicinal properties.' },
+  { id:5, name:'JNA Kashmiri Garlic (Mountain Variety)', price:899, old:1100, discount:18, emoji:'🏔️', cat:'Kashmiri Garlic', desc:'High-altitude Kashmiri garlic, smaller in size but 10x more potent than regular garlic.' },
+  { id:6, name:'JNA Ooty Garlic (Whole)', price:350, old:420, discount:17, emoji:'🌿', cat:'Whole Ooty Garlic', desc:'Sweet and mild Ooty garlic from the Nilgiri hills. Perfect for daily cooking use.' },
+];
+
+let cart = [];
+let currentProduct = null;
+let qty = 1;
+let discount = 0;
+
+// ===== RENDER PRODUCTS =====
+function renderProducts(containerId, items) {
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  el.innerHTML = items.map(p => `
+    <div class="product-card" onclick="showProduct(${p.id})">
+      <div class="product-img">
+        ${p.discount ? `<span class="badge-discount">-${p.discount}%</span>` : ''}
+        ${p.emoji}
+      </div>
+      <div class="product-info">
+        <h3>${p.name}</h3>
+        <div class="product-price">
+          <span class="price-current">₹${p.price.toLocaleString()}</span>
+          ${p.old ? `<span class="price-old">₹${p.old.toLocaleString()}</span>` : ''}
+        </div>
+        <button class="btn-cart" onclick="event.stopPropagation();addToCart(${p.id})">Add to Cart 🛒</button>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ===== PAGES =====
+function showPage(page) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + page).classList.add('active');
+  window.scrollTo(0, 0);
+  if(page === 'cart') renderCart();
+  if(page === 'checkout') renderCheckout();
+}
+
+// ===== PRODUCT DETAIL =====
+function showProduct(id) {
+  currentProduct = products.find(p => p.id === id);
+  qty = 1;
+  document.getElementById('pd-name').textContent = currentProduct.name;
+  document.getElementById('pd-price').textContent = '₹' + currentProduct.price.toLocaleString();
+  document.getElementById('pd-old').textContent = currentProduct.old ? '₹' + currentProduct.old.toLocaleString() : '';
+  document.getElementById('pd-img').textContent = currentProduct.emoji;
+  document.getElementById('pd-cat').textContent = currentProduct.cat;
+  document.getElementById('pd-desc').textContent = currentProduct.desc;
+  document.getElementById('qty').textContent = qty;
+  showPage('product');
+  document.querySelectorAll('.weight-btn').forEach((b,i) => b.classList.toggle('active', i===0));
+}
+document.querySelectorAll('.weight-btn').forEach(btn => {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.weight-btn').forEach(b => b.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+function changeQty(delta) {
+  qty = Math.max(1, qty + delta);
+  document.getElementById('qty').textContent = qty;
+}
+function addToCartFromDetail() {
+  if(!currentProduct) return;
+  addToCart(currentProduct.id, qty);
+}
+function buyNow() {
+  addToCartFromDetail();
+  showPage('checkout');
+}
+
+// ===== CART =====
+function addToCart(id, q=1) {
+  const p = products.find(x => x.id === id);
+  const existing = cart.find(x => x.id === id);
+  if(existing) existing.qty += q;
+  else cart.push({...p, qty: q});
+  updateCartCount();
+  showToast('✅ ' + p.name.split(' ').slice(0,3).join(' ') + ' cart mein add hua!');
+}
+function updateCartCount() {
+  const total = cart.reduce((sum, x) => sum + x.qty, 0);
+  document.getElementById('cart-count').textContent = total;
+}
+function renderCart() {
+  const el = document.getElementById('cart-items-list');
+  if(cart.length === 0) {
+    el.innerHTML = `<div style="text-align:center;padding:80px 24px;background:var(--white);border-radius:var(--radius);border:1px solid var(--border)">
+      <div style="font-size:64px;margin-bottom:16px">🛒</div>
+      <h3 style="color:var(--gray);font-size:20px">Aapka cart khali hai</h3>
+      <p style="color:var(--gray);margin:8px 0 24px">Kuch products add karein aur order karein!</p>
+      <button class="btn-primary" onclick="showPage('shop')">Shop Now</button>
+    </div>`;
+  } else {
+    el.innerHTML = cart.map(item => `
+      <div class="cart-item">
+        <div class="cart-item-img">${item.emoji}</div>
+        <div class="cart-item-info">
+          <h3>${item.name}</h3>
+          <p>Qty: ${item.qty}</p>
+        </div>
+        <div class="cart-item-price">₹${(item.price * item.qty).toLocaleString()}</div>
+        <button class="cart-item-remove" onclick="removeFromCart(${item.id})">🗑️</button>
+      </div>
+    `).join('');
+  }
+  updateSummary();
+}
+function removeFromCart(id) {
+  cart = cart.filter(x => x.id !== id);
+  updateCartCount();
+  renderCart();
+}
+function updateSummary() {
+  const sub = cart.reduce((s,x) => s + x.price * x.qty, 0);
+  const del = sub >= 999 ? 0 : 99;
+  const dis = discount;
+  const total = sub + del - dis;
+  document.getElementById('s-subtotal').textContent = '₹' + sub.toLocaleString();
+  document.getElementById('s-delivery').textContent = del === 0 ? 'FREE' : '₹' + del;
+  document.getElementById('s-discount').textContent = '-₹' + dis.toLocaleString();
+  document.getElementById('s-total').textContent = '₹' + total.toLocaleString();
+  document.getElementById('success-total').textContent = '₹' + total.toLocaleString();
+}
+function applyCoupon() {
+  const code = document.getElementById('coupon-input').value.trim().toUpperCase();
+  if(code === 'JNA10') {
+    const sub = cart.reduce((s,x) => s + x.price * x.qty, 0);
+    discount = Math.round(sub * 0.1);
+    showToast('🎉 Coupon applied! 10% discount mila!');
+    updateSummary();
+  } else {
+    showToast('❌ Invalid coupon code!');
+  }
+}
+function renderCheckout() {
+  const el = document.getElementById('checkout-items');
+  const sub = cart.reduce((s,x) => s + x.price * x.qty, 0);
+  const del = sub >= 999 ? 0 : 99;
+  const dis = discount;
+  const total = sub + del - dis;
+  el.innerHTML = cart.map(i => `<div class="review-item"><span>${i.emoji} ${i.name.split(' ').slice(0,3).join(' ')} ×${i.qty}</span><span>₹${(i.price*i.qty).toLocaleString()}</span></div>`).join('');
+  document.getElementById('co-subtotal').textContent = '₹' + sub.toLocaleString();
+  document.getElementById('co-delivery').textContent = del === 0 ? 'FREE' : '₹' + del;
+  document.getElementById('co-discount').textContent = '-₹' + dis.toLocaleString();
+  document.getElementById('co-total').textContent = '₹' + total.toLocaleString();
+}
+function placeOrder() {
+  cart = [];
+  discount = 0;
+  updateCartCount();
+  showPage('success');
+}
+
+// ===== PAYMENT METHODS =====
+function selectPayment(el, type) {
+  document.querySelectorAll('.payment-method').forEach(m => m.classList.remove('selected'));
+  el.classList.add('selected');
+  document.getElementById('upi-field').classList.toggle('hidden', type !== 'upi');
+  document.getElementById('card-fields').classList.toggle('hidden', type !== 'card');
+}
+
+// ===== MODAL =====
+function openModal() { document.getElementById('login-modal').classList.add('open'); }
+function closeModal() { document.getElementById('login-modal').classList.remove('open'); }
+function switchTab(tab) {
+  document.querySelectorAll('.modal-tab').forEach((t,i) => t.classList.toggle('active', (i===0&&tab==='login')||(i===1&&tab==='register')));
+  document.getElementById('tab-login').classList.toggle('active', tab==='login');
+  document.getElementById('tab-register').classList.toggle('active', tab==='register');
+}
+
+// ===== TOAST =====
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 3000);
+}
+
+// ===== CONTACT =====
+function submitContact() {
+  showToast('✅ Message bhej diya gaya! Hum 24 ghante mein reply karenge.');
+}
+
+// ===== NAV =====
+function toggleNav() {
+  document.getElementById('main-nav').classList.toggle('open');
+}
+
+// ===== INIT =====
+renderProducts('home-products', products.slice(0,4));
+renderProducts('featured-products', products.slice(2,6));
+renderProducts('shop-products', products);
+</script>
+</body>
+</html>
